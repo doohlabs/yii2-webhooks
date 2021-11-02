@@ -25,10 +25,21 @@ http request with the `Example` object attributes.
 
 The preferred way to install this extension is through <a href="http://getcomposer.org/download/" target="_blank">composer</a>.
 
+Add the repository to composer.json.
+
+```
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/doohlabs/yii2-webhooks.git"
+    }
+]
+```
+
 Run composer installation.
 
 ```bash
-composer require --prefer-dist degordian/yii2-webhooks "dev-master"
+composer require --prefer-dist doohlabs/yii2-webhooks "dev-master"
 ```
 
 ## Setup
@@ -36,7 +47,7 @@ composer require --prefer-dist degordian/yii2-webhooks "dev-master"
 Run the migration. It creates the _webhook_ and _webhook_log_ tables.
 
 ```bash
-php yii migrate --migrationPath=@degordian/webhooks/migrations
+php yii migrate --migrationPath=@doohlabs/webhooks/migrations
 ```
 
 The extension needs to be bootstrapped:
@@ -52,7 +63,7 @@ Add the module to the config:
 'modules' => [
     // ...
     'webhooks' => [
-        'class' => 'degordian\webhooks\Module',
+        'class' => 'doohlabs\webhooks\Module',
     ],
 ],
 ```
@@ -63,6 +74,8 @@ Add the module to the config:
 Create a new webhook by navigating to the _webhooks_ module: `index.php?r=webhooks/webhook/create`
 
 You can use the predefined events from `BaseActiveRecord` class, e.g. `EVENT_AFTER_INSERT` or you can use your own events, e.g. `app\models\Example::EVENT_EXAMPLE`.
+
+The model must implement \doohlabs\webhooks\interfaces\WebhookModelInterface.
 
 ### User generated events
 When triggering your custom event, make sure you __send the instantiated model__ like in the following code:
@@ -85,7 +98,7 @@ Config needs to be updated accordingly:
 'modules' => [
     // ...
     'webhooks' => [
-        'class' => 'degordian\webhooks\Module',
+        'class' => 'doohlabs\webhooks\Module',
         'eventDispatcherComponentClass' => 'app\components\MyDispatcher',
     ],
 ],
@@ -119,7 +132,7 @@ Link the repo to your project by adding it to your project's `composer.json` fil
 
 Install it to the project using composer:
 
-`composer require --prefer-dist degordian/yii2-webhooks "*"`
+`composer require --prefer-dist doohlabs/yii2-webhooks "*"`
 
 You can edit the files from within you project, directly in your `vendor` folder, for it is much more convenient that way. 
 
@@ -131,4 +144,4 @@ This extension is created and maintained by [Bornfight](https://www.bornfight.co
 
 ## License
 
-TBD
+MIT

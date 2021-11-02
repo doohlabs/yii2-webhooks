@@ -1,14 +1,14 @@
 <?php
 
-namespace degordian\webhooks\models;
+namespace doohlabs\webhooks\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use degordian\webhooks\models\WebhookLog;
+use doohlabs\webhooks\models\WebhookLog;
 
 /**
- * WebhookLogSearch represents the model behind the search form of `degordian\webhooks\models\WebhookLog`.
+ * WebhookLogSearch represents the model behind the search form of `doohlabs\webhooks\models\WebhookLog`.
  */
 class WebhookLogSearch extends WebhookLog
 {

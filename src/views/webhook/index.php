@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel \degordian\webhooks\models\WebhookSearch */
+/* @var $searchModel \doohlabs\webhooks\models\WebhookSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Webhooks';

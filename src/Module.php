@@ -1,25 +1,25 @@
 <?php
 
-namespace degordian\webhooks;
+namespace doohlabs\webhooks;
 
-use degordian\webhooks\components\validators\ClassConstantDefinedValidator;
-use degordian\webhooks\models\WebhookQuery;
+use doohlabs\webhooks\components\validators\ClassConstantDefinedValidator;
+use doohlabs\webhooks\models\WebhookQuery;
 use yii\base\Event;
 use yii\base\Exception;
 
 class Module extends \yii\base\Module
 {
-    public $controllerNamespace = 'degordian\webhooks\controllers';
+    public $controllerNamespace = 'doohlabs\webhooks\controllers';
 
     public $defaultRoute = 'webhook/index';
 
-    public $eventDispatcherComponentClass = 'degordian\webhooks\components\dispatcher\EventDispatcher';
+    public $eventDispatcherComponentClass = 'doohlabs\webhooks\components\dispatcher\EventDispatcher';
 
-    public $webhookClass = 'degordian\webhooks\models\Webhook';
+    public $webhookClass = 'doohlabs\webhooks\models\Webhook';
 
-    private $webhookInterface = 'degordian\webhooks\interfaces\WebhookInterface';
+    private $webhookInterface = 'doohlabs\webhooks\interfaces\WebhookInterface';
 
-    private $eventDispatcherInterface = 'degordian\webhooks\components\dispatcher\EventDispatcherInterface';
+    private $eventDispatcherInterface = 'doohlabs\webhooks\components\dispatcher\EventDispatcherInterface';
 
     public function init(): void
     {
@@ -39,7 +39,7 @@ class Module extends \yii\base\Module
                         'class' => $this->eventDispatcherComponentClass
                     ],
                     'formatter' => [
-                        'class' => 'degordian\webhooks\components\formatter\JsonPrettyFormatter'
+                        'class' => 'doohlabs\webhooks\components\formatter\JsonPrettyFormatter'
                     ]
                 ]
             ]);

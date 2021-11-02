@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model \degordian\webhooks\models\Webhook */
+/* @var $model \doohlabs\webhooks\models\Webhook */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

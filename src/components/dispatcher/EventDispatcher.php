@@ -1,9 +1,9 @@
 <?php
 
-namespace degordian\webhooks\components\dispatcher;
+namespace doohlabs\webhooks\components\dispatcher;
 
-use degordian\webhooks\components\logger\Logger;
-use degordian\webhooks\models\Webhook;
+use doohlabs\webhooks\components\logger\Logger;
+use doohlabs\webhooks\models\Webhook;
 use yii\base\Component;
 use yii\base\Event;
 use yii\httpclient\Client;
@@ -18,7 +18,7 @@ class EventDispatcher extends Component implements EventDispatcherInterface
         $data = [
             'model' => $webhook->getClassName(),
             'modelEvent' => $webhook->getEventName(),
-            'modelAttributes' => $event->sender->attributes,
+            'modelAttributes' => array_intersect_key($event->sender->attributes, array_flip($event->sender->webhookFields())),
         ];
         try {
             $request = $client->createRequest()

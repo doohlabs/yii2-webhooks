@@ -1,6 +1,6 @@
 <?php
 
-namespace degordian\webhooks\components\validators;
+namespace doohlabs\webhooks\components\validators;
 
 use Yii;
 use yii\validators\Validator;

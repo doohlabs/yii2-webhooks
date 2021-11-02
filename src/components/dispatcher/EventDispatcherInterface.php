@@ -1,8 +1,8 @@
 <?php
 
-namespace degordian\webhooks\components\dispatcher;
+namespace doohlabs\webhooks\components\dispatcher;
 
-use degordian\webhooks\models\Webhook;
+use doohlabs\webhooks\models\Webhook;
 use yii\base\Event;
 
 interface EventDispatcherInterface

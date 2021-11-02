@@ -6,7 +6,7 @@
  * Time: 10:55
  */
 
-namespace degordian\webhooks\models;
+namespace doohlabs\webhooks\models;
 
 use Yii;
 

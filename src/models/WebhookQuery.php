@@ -1,6 +1,6 @@
 <?php
 
-namespace degordian\webhooks\models;
+namespace doohlabs\webhooks\models;
 
 class WebhookQuery extends \yii\db\ActiveQuery
 {

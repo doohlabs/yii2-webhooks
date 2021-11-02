@@ -1,7 +1,7 @@
 <?php
 
 
-namespace degordian\webhooks\controllers;
+namespace doohlabs\webhooks\controllers;
 
 class Controller extends \yii\web\Controller
 {

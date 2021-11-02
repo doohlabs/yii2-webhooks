@@ -1,9 +1,11 @@
 <?php
 
-namespace degordian\webhooks\models;
+namespace doohlabs\webhooks\models;
 
-use degordian\webhooks\components\validators\ClassConstantDefinedValidator;
-use degordian\webhooks\interfaces\WebhookInterface;
+use doohlabs\webhooks\components\validators\ClassConstantDefinedValidator;
+use doohlabs\webhooks\interfaces\WebhookInterface;
+use doohlabs\webhooks\interfaces\WebhookModelInterface;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -65,6 +67,7 @@ class Webhook extends \yii\db\ActiveRecord implements WebhookInterface
             [['event', 'url', 'method'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
             ['event', ClassConstantDefinedValidator::class, 'message' => 'Allowed format: <namespaced\Class>::<CONSTANT>'],
+            ['event', 'validateModelInterface'],
             ['url', 'url'],
             ['method', 'in', 'range' => ['GET', 'POST', 'PUT', 'DELETE']],
         ];
@@ -72,6 +75,25 @@ class Webhook extends \yii\db\ActiveRecord implements WebhookInterface
 
     public function httpMethodValidation()
     {
+    }
+
+    /**
+     * Validates the interface of the model belonging to the event
+     *
+     * @param $attribute
+     */
+    public function validateModelInterface($attribute)
+    {
+        $parts = explode('::', $this->$attribute);
+        if (count($parts) !== 2) {
+            return;
+        }
+
+        $instance = new $parts[0]();
+
+        if (!$instance instanceof WebhookModelInterface) {
+            $this->addError($attribute, Yii::t('yii', 'Model must implement \doohlabs\webhooks\interfaces\WebhookModelInterface'));
+        }
     }
 
     public function attributeLabels()

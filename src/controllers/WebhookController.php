@@ -1,9 +1,9 @@
 <?php
 
-namespace degordian\webhooks\controllers;
+namespace doohlabs\webhooks\controllers;
 
-use degordian\webhooks\models\Webhook;
-use degordian\webhooks\models\WebhookSearch;
+use doohlabs\webhooks\models\Webhook;
+use doohlabs\webhooks\models\WebhookSearch;
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

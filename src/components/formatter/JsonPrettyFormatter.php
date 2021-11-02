@@ -1,6 +1,6 @@
 <?php
 
-namespace degordian\webhooks\components\formatter;
+namespace doohlabs\webhooks\components\formatter;
 
 use yii\i18n\Formatter;
 

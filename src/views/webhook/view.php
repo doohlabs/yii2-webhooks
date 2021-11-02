@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model \degordian\webhooks\models\Webhook */
+/* @var $model \doohlabs\webhooks\models\Webhook */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Webhooks', 'url' => ['index']];

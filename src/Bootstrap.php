@@ -1,6 +1,6 @@
 <?php
 
-namespace degordian\webhooks;
+namespace doohlabs\webhooks;
 
 use yii\base\BootstrapInterface;
 
@@ -10,7 +10,7 @@ class Bootstrap implements BootstrapInterface
     {
         $app->setModule('webhooks', [
             'id' => 'webhooks',
-            'class' => 'degordian\webhooks\Module'
+            'class' => 'doohlabs\webhooks\Module'
         ]);
     }
 }

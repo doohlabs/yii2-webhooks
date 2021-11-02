@@ -1,6 +1,6 @@
 <?php
 
-namespace degordian\webhooks\models;
+namespace doohlabs\webhooks\models;
 
 use Yii;
 use yii\base\Model;

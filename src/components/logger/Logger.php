@@ -6,10 +6,10 @@
  * Time: 10:52
  */
 
-namespace degordian\webhooks\components\logger;
+namespace doohlabs\webhooks\components\logger;
 
-use degordian\webhooks\models\Webhook;
-use degordian\webhooks\models\WebhookLog;
+use doohlabs\webhooks\models\Webhook;
+use doohlabs\webhooks\models\WebhookLog;
 use yii\base\Component;
 use yii\helpers\Json;
 use yii\httpclient\Request;

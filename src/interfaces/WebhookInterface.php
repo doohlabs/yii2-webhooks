@@ -1,6 +1,6 @@
 <?php
 
-namespace degordian\webhooks\interfaces;
+namespace doohlabs\webhooks\interfaces;
 
 interface WebhookInterface
 {

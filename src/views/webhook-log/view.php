@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use yii\helpers\Json;
 
 /* @var $this yii\web\View */
-/* @var $model degordian\webhooks\models\WebhookLog */
+/* @var $model doohlabs\webhooks\models\WebhookLog */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Webhook Logs', 'url' => ['index']];
