@@ -19,7 +19,7 @@ class WebhookLogSearch extends WebhookLog
     {
         return [
             [['id', 'log_time', 'response_status_code'], 'integer'],
-            [['webhook_event', 'webhook_method', 'webhook_url', 'request_headers', 'request_payload', 'response_headers'], 'safe'],
+            [['webhook_model', 'webhook_event', 'webhook_method', 'webhook_url', 'request_headers', 'request_payload', 'response_headers'], 'safe'],
         ];
     }
 
@@ -69,7 +69,8 @@ class WebhookLogSearch extends WebhookLog
             'response_status_code' => $this->response_status_code,
         ]);
 
-        $query->andFilterWhere(['like', 'webhook_event', $this->webhook_event])
+        $query->andFilterWhere(['like', 'webhook_model', $this->webhook_model])
+            ->andFilterWhere(['like', 'webhook_event', $this->webhook_event])
             ->andFilterWhere(['like', 'webhook_method', $this->webhook_method])
             ->andFilterWhere(['like', 'webhook_url', $this->webhook_url])
             ->andFilterWhere(['like', 'request_headers', $this->request_headers])

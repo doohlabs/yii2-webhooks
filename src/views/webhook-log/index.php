@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return '<span class="label label-danger">'.$model->response_status_code.'</span>';
                 }
             ],
+            'webhook_model',
             'webhook_event',
             'webhook_method',
             'webhook_url:url',

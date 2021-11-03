@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'log_time:datetime',
+            'webhook_model',
             'webhook_event',
             'webhook_method',
             'webhook_url:url',

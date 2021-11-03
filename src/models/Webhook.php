@@ -2,9 +2,9 @@
 
 namespace doohlabs\webhooks\models;
 
-use doohlabs\webhooks\components\validators\ClassConstantDefinedValidator;
 use doohlabs\webhooks\interfaces\WebhookInterface;
 use doohlabs\webhooks\interfaces\WebhookModelInterface;
+use doohlabs\webhooks\Module;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -12,6 +12,7 @@ use yii\behaviors\TimestampBehavior;
  * This is the model class for table "webhook".
  *
  * @property int $id
+ * @property string $model
  * @property string $event
  * @property string $description
  * @property string $url
@@ -24,6 +25,11 @@ class Webhook extends \yii\db\ActiveRecord implements WebhookInterface
     public static function tableName()
     {
         return 'webhook';
+    }
+
+    public function getModel()
+    {
+        return $this->model;
     }
 
     public function getEvent()
@@ -41,14 +47,9 @@ class Webhook extends \yii\db\ActiveRecord implements WebhookInterface
         return $this->method;
     }
 
-    public function getEventName()
+    public function getModelEvent()
     {
-        return explode('::', $this->event)[1];
-    }
-
-    public function getClassName()
-    {
-        return explode('::', $this->event)[0];
+        return $this->model . '::' . $this->event;
     }
 
     public function behaviors()
@@ -60,14 +61,18 @@ class Webhook extends \yii\db\ActiveRecord implements WebhookInterface
 
     public function rules()
     {
+        $module = Module::getInstance();
+
         return [
             [['event', 'description'], 'string', 'max' => 255],
             [['url'], 'string', 'max' => 2083],
             [['method'], 'string', 'max' => 6],
+            [['model'], 'string'],
             [['event', 'url', 'method'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
-            ['event', ClassConstantDefinedValidator::class, 'message' => 'Allowed format: <namespaced\Class>::<CONSTANT>'],
-            ['event', 'validateModelInterface'],
+            ['event', 'in', 'range' => $module->allowedEvents],
+            ['model', 'in', 'range' => $module->allowedModels],
+            ['model', 'validateModel'],
             ['url', 'url'],
             ['method', 'in', 'range' => ['GET', 'POST', 'PUT', 'DELETE']],
         ];
@@ -82,14 +87,14 @@ class Webhook extends \yii\db\ActiveRecord implements WebhookInterface
      *
      * @param $attribute
      */
-    public function validateModelInterface($attribute)
+    public function validateModel($attribute)
     {
-        $parts = explode('::', $this->$attribute);
-        if (count($parts) !== 2) {
+        if (!class_exists($this->$attribute)) {
+            $this->addError($attribute, Yii::t('yii', '{model} is not defined', ['model' => $this->$attribute]));
             return;
         }
 
-        $instance = new $parts[0]();
+        $instance = new $this->$attribute();
 
         if (!$instance instanceof WebhookModelInterface) {
             $this->addError($attribute, Yii::t('yii', 'Model must implement \doohlabs\webhooks\interfaces\WebhookModelInterface'));
@@ -100,6 +105,7 @@ class Webhook extends \yii\db\ActiveRecord implements WebhookInterface
     {
         return [
             'id' => 'ID',
+            'model' => 'Model',
             'event' => 'Event',
             'description' => 'Description',
             'url' => 'Url',

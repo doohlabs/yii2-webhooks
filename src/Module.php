@@ -17,6 +17,22 @@ class Module extends \yii\base\Module
 
     public $webhookClass = 'doohlabs\webhooks\models\Webhook';
 
+    public $allowedModels = [];
+
+    public $allowedEvents = [
+        'EVENT_AFTER_DELETE',
+        'EVENT_AFTER_FIND',
+        'EVENT_AFTER_INSERT',
+        'EVENT_AFTER_REFRESH',
+        'EVENT_AFTER_UPDATE',
+        'EVENT_AFTER_VALIDATE',
+        'EVENT_BEFORE_DELETE',
+        'EVENT_BEFORE_INSERT',
+        'EVENT_BEFORE_UPDATE',
+        'EVENT_BEFORE_VALIDATE',
+        'EVENT_INIT',
+    ];
+
     private $webhookInterface = 'doohlabs\webhooks\interfaces\WebhookInterface';
 
     private $eventDispatcherInterface = 'doohlabs\webhooks\components\dispatcher\EventDispatcherInterface';
@@ -73,8 +89,8 @@ class Module extends \yii\base\Module
     {
         $validator = new ClassConstantDefinedValidator();
         foreach ($webhooks as $webhook) {
-            if (!$validator->validate($webhook->event)) {
-                throw new Exception('Event ' . $webhook->event . ' does not exist');
+            if (!$validator->validate($webhook->getModelEvent())) {
+                throw new Exception('Event ' . $webhook->getModelEvent() . ' does not exist');
             }
         }
     }
@@ -82,18 +98,11 @@ class Module extends \yii\base\Module
     private function attachWebhooks(array $webhooks): void
     {
         foreach ($webhooks as $webhook) {
-            Event::on($webhook->getClassName(), constant($webhook->event), function ($event) use ($webhook) {
+            Event::on($webhook->getModel(), constant($webhook->getModelEvent()), function ($event) use ($webhook) {
                 $this->eventDispatcher->dispatch($event, $webhook);
             });
         }
     }
-
-//    private function detachWebhooks(array $webhooks): void
-//    {
-//        foreach ($webhooks as $webhook) {
-//            Event::off($webhook->getClassName(), constant($webhook->event), [$this->eventDispatcher, 'dispatch']);
-//        }
-//    }
 
     private function findWebhooks(): array
     {

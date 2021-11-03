@@ -64,6 +64,15 @@ Add the module to the config:
     // ...
     'webhooks' => [
         'class' => 'doohlabs\webhooks\Module',
+        'allowedModels' => [
+            'app\models\Model1',
+            'app\models\Model2',
+        ],
+        'allowedEvents' => [
+            'EVENT_AFTER_DELETE',
+            'EVENT_AFTER_INSERT',
+            'EVENT_AFTER_UPDATE',
+        ],
     ],
 ],
 ```

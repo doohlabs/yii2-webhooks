@@ -19,6 +19,7 @@ class m181011_101959_create_table_webhook extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
+            'model' => $this->string(255)->notNull(),
             'event' => $this->string(255)->notNull(),
             'description' => $this->text()->null(),
             'url' => $this->string(2083)->notNull(),

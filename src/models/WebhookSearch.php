@@ -12,7 +12,7 @@ class WebhookSearch extends Webhook
     {
         return [
             [['id', 'created_at', 'updated_at'], 'integer'],
-            [['event', 'description', 'url', 'method'], 'safe'],
+            [['model', 'event', 'description', 'url', 'method'], 'safe'],
         ];
     }
 
@@ -47,7 +47,8 @@ class WebhookSearch extends Webhook
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'event', $this->event])
+        $query->andFilterWhere(['like', 'model', $this->model])
+            ->andFilterWhere(['like', 'event', $this->event])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'url', $this->url])
             ->andFilterWhere(['like', 'method', $this->method]);

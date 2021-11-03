@@ -20,6 +20,7 @@ class m181011_101960_create_table_webhook_log extends Migration
         $this->createTable($this->tableName, [
             'id' => $this->bigPrimaryKey(),
             'log_time' => $this->integer(11),
+            'webhook_model' => $this->string(),
             'webhook_event' => $this->string(),
             'webhook_method' => $this->string(10),
             'webhook_url' => $this->string(),

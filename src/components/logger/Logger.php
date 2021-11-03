@@ -23,6 +23,7 @@ class Logger extends Component
             'log_time' => time(),
             'webhook_method' => $webhook->method,
             'webhook_url' => $webhook->url,
+            'webhook_model' => $webhook->model,
             'webhook_event' => $webhook->event,
             'request_headers' => Json::encode($request->headers),
             'request_payload' => Json::encode($request->data),

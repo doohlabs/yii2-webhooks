@@ -15,6 +15,7 @@ use Yii;
  *
  * @property int $id
  * @property int $log_time
+ * @property string $webhook_model
  * @property string $webhook_event
  * @property string $webhook_method
  * @property string $webhook_url
@@ -41,6 +42,7 @@ class WebhookLog extends \yii\db\ActiveRecord
         return [
             [['log_time', 'response_status_code'], 'integer'],
             [['request_headers', 'request_payload', 'response_headers'], 'string'],
+            [['webhook_model'], 'string'],
             [['webhook_event', 'webhook_url'], 'string', 'max' => 255],
             [['webhook_method'], 'string', 'max' => 10],
         ];
@@ -54,6 +56,7 @@ class WebhookLog extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'log_time' => 'Log Time',
+            'webhook_model' => 'Webhook Model',
             'webhook_event' => 'Webhook Event',
             'webhook_method' => 'Webhook Method',
             'webhook_url' => 'Webhook Url',
