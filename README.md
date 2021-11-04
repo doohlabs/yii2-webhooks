@@ -25,21 +25,10 @@ http request with the `Example` object attributes.
 
 The preferred way to install this extension is through <a href="http://getcomposer.org/download/" target="_blank">composer</a>.
 
-Add the repository to composer.json.
-
-```
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/doohlabs/yii2-webhooks.git"
-    }
-]
-```
-
 Run composer installation.
 
 ```bash
-composer require --prefer-dist doohlabs/yii2-webhooks "dev-master"
+composer require --prefer-dist doohlabs/yii2-webhooks "^1.0"
 ```
 
 ## Setup
