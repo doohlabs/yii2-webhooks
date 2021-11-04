@@ -13,6 +13,10 @@
         {
             "name": "Rudolf Jurišić",
             "email": "rudolf.jurisic@degordian.com"
+        },
+        {
+            "name": "Tony Wahlberg",
+            "email": "tony.wahlberg@doohlabs.com"
         }
     ],
     "minimum-stability": "dev",
