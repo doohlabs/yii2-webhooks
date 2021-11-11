@@ -136,9 +136,9 @@ You can edit the files from within you project, directly in your `vendor` folder
 
 ## Credits
 
-This extension is created and maintained by [Bornfight](https://www.bornfight.com).
+This extension is maintained by [Doohlabs](https://www.doohlabs.com/).
 
-<img src="https://www.bornfight.com/wp-content/uploads/2018/09/tw_share.png" width="978">
+The original extension was created and is maintained by [Bornfight](https://www.bornfight.com).
 
 ## License
 
