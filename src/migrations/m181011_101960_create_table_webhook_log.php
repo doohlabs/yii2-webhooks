@@ -1,5 +1,7 @@
 <?php
 
+namespace doohlabs\webhooks\migrations;
+
 use yii\db\Migration;
 
 /**
