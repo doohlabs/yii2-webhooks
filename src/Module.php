@@ -33,6 +33,8 @@ class Module extends \yii\base\Module
         'EVENT_INIT',
     ];
 
+    public $timeout = 10;
+
     private $webhookInterface = 'doohlabs\webhooks\interfaces\WebhookInterface';
 
     private $eventDispatcherInterface = 'doohlabs\webhooks\components\dispatcher\EventDispatcherInterface';

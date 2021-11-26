@@ -4,6 +4,7 @@ namespace doohlabs\webhooks\components\dispatcher;
 
 use doohlabs\webhooks\components\logger\Logger;
 use doohlabs\webhooks\models\Webhook;
+use doohlabs\webhooks\Module;
 use yii\base\Component;
 use yii\base\Event;
 use yii\httpclient\Client;
@@ -14,6 +15,7 @@ class EventDispatcher extends Component implements EventDispatcherInterface
 
     public function dispatch(Event $event, Webhook $webhook)
     {
+        $module = Module::getInstance();
         $client = new Client();
         $data = [
             'model' => $webhook->getModel(),
@@ -27,7 +29,10 @@ class EventDispatcher extends Component implements EventDispatcherInterface
                     'User-Agent' => $this->userAgent,
                 ])
                 ->setUrl($webhook->url)
-                ->setData($data);
+                ->setData($data)
+                ->setOptions([
+                    'timeout' => $module->timeout,
+                ]);
             $response = $request->send();
             Logger::log($webhook, $request, $response);
         } catch (\Exception $e) {

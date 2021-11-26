@@ -62,6 +62,7 @@ Add the module to the config:
             'EVENT_AFTER_INSERT',
             'EVENT_AFTER_UPDATE',
         ],
+        'timeout' => 30,
     ],
 ],
 ```
