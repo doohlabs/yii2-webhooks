@@ -56,9 +56,6 @@ class Module extends \yii\base\Module
                     'eventDispatcher' => [
                         'class' => $this->eventDispatcherComponentClass
                     ],
-                    'formatter' => [
-                        'class' => 'doohlabs\webhooks\components\formatter\JsonPrettyFormatter'
-                    ]
                 ]
             ]);
 
